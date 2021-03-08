@@ -3,6 +3,7 @@ package com.example.youinvited
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,7 +23,9 @@ class RegisterActivity : AppCompatActivity() {
         if (textFieldEmail.text.isNotEmpty() && textFieldPass.text.isNotEmpty()) {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(textFieldEmail.text.toString(),textFieldPass.text.toString()).addOnCompleteListener {
                 if (it.isSuccessful){
-                    this.showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
+                    FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
+                    Toast.makeText(this, "Se envio un email de verificación a tu correo", Toast.LENGTH_LONG)
+                    this.showHome()
                 }else{
                     this.showAlert()
                 }
@@ -39,11 +42,8 @@ class RegisterActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun showHome(email: String, provider: ProviderType){
-        val intent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider)
-        }
+    fun showHome(){
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 

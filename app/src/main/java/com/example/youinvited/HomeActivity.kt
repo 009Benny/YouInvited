@@ -14,10 +14,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val bundle = intent.extras
-        val email:String = bundle?.getString("email") ?: ""
-        textViewEmail.text = email.toString()
-        btn_logout.setOnClickListener { this.logout() }
+//        val bundle = intent.extras
+//        val email:String = bundle?.getString("email") ?: ""
+//        textViewEmail.text = email.toString()
+//        btn_logout.setOnClickListener { this.logout() }
     }
 
     fun logout(){
