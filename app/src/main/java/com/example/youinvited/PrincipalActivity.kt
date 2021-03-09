@@ -1,7 +1,12 @@
 package com.example.youinvited
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -13,6 +18,9 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.fragment_slideshow.*
+import org.intellij.lang.annotations.Language
+import java.util.*
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -20,15 +28,15 @@ class PrincipalActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_principal)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+//        val btnLanguage: Button = findViewById(R.id.btnLanguage)
+//        btnLanguage.setOnClickListener {
+//            this.changeLanguage()
+//        }
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -53,4 +61,45 @@ class PrincipalActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    fun hello(){
+        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show()
+    }
+
+    fun changeLanguage(){
+        val list = arrayOf("Español, English")
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Elige tu lenguaje")
+        builder.setSingleChoiceItems(list, -1){ dialog, which ->
+            if (which == 0){
+                this.setLocale("es-rMX")
+                recreate()
+            }else if (which == 1){
+                this.setLocale("en")
+                recreate()
+            }
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
+    fun setLocale(language:String){
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        val editor = getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", language)
+        editor.apply()
+    }
+
+    fun loadLocate(){
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        var language: String? = sharedPreferences.getString("My_Lang", "")
+        if (language != null){
+            setLocale(language!!)
+        }
+    }
+
 }
