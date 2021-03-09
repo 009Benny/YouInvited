@@ -62,12 +62,8 @@ class PrincipalActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun hello(){
-        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show()
-    }
-
     fun changeLanguage(){
-        val list = arrayOf("Español, English")
+        val list = arrayOf("Español", "English")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Elige tu lenguaje")
         builder.setSingleChoiceItems(list, -1){ dialog, which ->

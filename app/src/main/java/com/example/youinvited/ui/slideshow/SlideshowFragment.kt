@@ -12,21 +12,15 @@ import com.example.youinvited.PrincipalActivity
 import com.example.youinvited.R
 import kotlinx.android.synthetic.main.fragment_slideshow.*
 
-class SlideshowFragment : Fragment() {
+class SlideshowFragment : Fragment(), View.OnClickListener{
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        return inflater.inflate(R.layout.fragment_slideshow, container, false)
-        val view =  inflater.inflate(R.layout.fragment_slideshow, container, false)
+        return inflater.inflate(R.layout.fragment_slideshow, container, false)
 
-        btnLanguage.setOnClickListener { view ->
-            val principal:PrincipalActivity = activity as PrincipalActivity
-            principal.hello()
-        }
-        return view
 //        slideshowViewModel =
 //            ViewModelProvider(this).get(SlideshowViewModel::class.java)
 //        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
@@ -36,8 +30,16 @@ class SlideshowFragment : Fragment() {
 //        return root
     }
 
-    fun sayHello(){
-        Toast.makeText(activity, "Hola", Toast.LENGTH_SHORT).show()
+    override fun onStart() {
+        super.onStart()
+        btnLanguage.setOnClickListener(this)
+    }
+
+    override fun onClick(p0: View?) {
+        if(p0 == this.btnLanguage){
+            val act = activity as PrincipalActivity
+            act.changeLanguage()
+        }
     }
 
 }
