@@ -1,6 +1,8 @@
 package com.example.youinvited
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,10 +12,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.textFieldEmail
 import kotlinx.android.synthetic.main.activity_login.textFieldPass
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        this.loadLocate()
         setContentView(R.layout.activity_register)
         title = "Registrarse"
         btn_register.setOnClickListener { this.registerUser() }
@@ -45,6 +49,25 @@ class RegisterActivity : AppCompatActivity() {
     fun showHome(){
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    fun setLocale(language:String){
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        val editor = getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", language)
+        editor.apply()
+    }
+
+    fun loadLocate(){
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        var language: String? = sharedPreferences.getString("My_Lang", "")
+        if (language != null){
+            setLocale(language!!)
+        }
     }
 
 }

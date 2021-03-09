@@ -19,7 +19,17 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <!--    Login-->
+    <string name="welcome_message">Welcome!, Log in please</string>
+    <string name="btnLogin">Log In</string>
+    <string name="btnRegister">Register</string>
+    <string name="fillData">Please, fill all the spaces</string>
 
+    <!---->
+    <string name="homeFragment">Fragment Home</string>
+    <string name="galleryFragment">Fragment Gallery</string>
+    <string name="languageFragment">Fragment Language</string>
+    <!--    -->
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Change laguage</string>

@@ -19,7 +19,17 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Encabezado de Navegación</string>
     <string name="action_settings">Configuracion</string>
+    <!--    Login-->
+    <string name="welcome_message">Bienvenido, favor de iniciar sesión</string>
+    <string name="btnLogin">Iniciar sesión</string>
+    <string name="btnRegister">Registrarse</string>
+    <string name="fillData">Por favor, llena todos los campos</string>
 
+    <!---->
+    <string name="homeFragment">Fragmento Portada</string>
+    <string name="galleryFragment">Fragmento Galeria</string>
+    <string name="languageFragment">Fragmento Lenguaje</string>
+    <!--    -->
     <string name="menu_home">Portada</string>
     <string name="menu_gallery">Galeria</string>
     <string name="menu_slideshow">Cambio de Idioma</string>

@@ -28,14 +28,11 @@ class PrincipalActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        this.loadLocate()
 
         setContentView(R.layout.activity_principal)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-//        val btnLanguage: Button = findViewById(R.id.btnLanguage)
-//        btnLanguage.setOnClickListener {
-//            this.changeLanguage()
-//        }
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
